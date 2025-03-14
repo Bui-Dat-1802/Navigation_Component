@@ -55,6 +55,7 @@ class BlankFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     sampleViewModel._name.value = s.toString()
+                    sampleViewModel._numOfChar.value = s.toString()?.length?: 0
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -71,7 +72,10 @@ class BlankFragment : Fragment() {
 
 //        update txtName liên tục khi nhập
         sampleViewModel.name.observe(viewLifecycleOwner){name->
-            binding.txtName.setText(name)
+            binding.txtName.setText(name.uppercase())
+        }
+        sampleViewModel._numOfChar.observe(viewLifecycleOwner){numOfChar->
+            binding.txtNumOfChar.setText(numOfChar.toString())
         }
 
 
